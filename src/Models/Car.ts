@@ -1,4 +1,4 @@
-import { Model, model, Schema, models } from 'mongoose';
+import { Model, model, Schema, models, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import Car from '../Domains/Car';
 
@@ -23,6 +23,17 @@ class CarODM {
   public async createNewCar(car: Car): Promise<ICar> {
     const newCar = await this.model.create({ ...car });
     return newCar;
+  }
+
+  public async getAllCars(): Promise<ICar[]> {
+    const allCars = await this.model.find({});
+    return allCars;
+  }
+
+  public async getCarById(id: string): Promise<ICar | null> {
+    if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
+    const car = await this.model.findById(id);
+    return car;
   }
 }
 
