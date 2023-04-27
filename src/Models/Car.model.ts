@@ -1,5 +1,6 @@
 import { Model, model, Schema, models, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+import Car from '../Domains/Car';
 
 class CarODM {
   private schema: Schema;
@@ -33,6 +34,13 @@ class CarODM {
     if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
     const car = await this.model.findById(id);
     return car;
+  }
+
+  public async updateCarById(id: string, car: Car): Promise<ICar | null> {
+    const updateCar = await this.model.findByIdAndUpdate(id, car, {
+      new: true,
+    });
+    return updateCar;
   }
 }
 
