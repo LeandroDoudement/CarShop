@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { isValidObjectId } from 'mongoose';
-import CarService from '../Services/Car';
+import CarService from '../Services/Car.service';
 
 export default class CarController {
   private carService: CarService;

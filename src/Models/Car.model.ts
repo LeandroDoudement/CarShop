@@ -1,6 +1,5 @@
 import { Model, model, Schema, models, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
-import Car from '../Domains/Car';
 
 class CarODM {
   private schema: Schema;
@@ -20,7 +19,7 @@ class CarODM {
     this.model = models.Car || model('Car', this.schema);
   }
 
-  public async createNewCar(car: Car): Promise<ICar> {
+  public async createNewCar(car: ICar): Promise<ICar> {
     const newCar = await this.model.create({ ...car });
     return newCar;
   }

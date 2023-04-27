@@ -1,6 +1,6 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
-import CarODM from '../Models/Car';
+import CarODM from '../Models/Car.model';
 
 export default class CarService {
   private createCarDomain(car: ICar | null): Car | null {
@@ -10,7 +10,7 @@ export default class CarService {
     return null;
   }
 
-  public async createCarService(car: Car): Promise<Car | null> {
+  public async createCarService(car: ICar): Promise<Car | null> {
     const carODM = new CarODM();
     const newCar = await carODM.createNewCar(car);
     return this.createCarDomain(newCar);

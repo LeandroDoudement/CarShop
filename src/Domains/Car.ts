@@ -20,7 +20,7 @@ export default class Car {
     doorsQty,
     seatsQty,
   }: ICar) {
-    this.id = _id.toString();
+    this.id = `${_id}`;
     this.model = model;
     this.year = year;
     this.color = color;
