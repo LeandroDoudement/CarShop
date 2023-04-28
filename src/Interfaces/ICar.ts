@@ -1,12 +1,6 @@
-import { Document } from 'mongoose';
+import IVehicle from './IVehicle';
 
-export default interface ICar extends Partial<Document> {
-  id?: string;
-  model: string;
-  year: number;
-  color: string;
-  status?: boolean;
-  buyValue: number;
+export default interface ICar extends IVehicle {
   doorsQty: number;
   seatsQty: number;
 }
